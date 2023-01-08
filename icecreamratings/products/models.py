@@ -13,12 +13,24 @@ class Category(models.Model):
         return self.category_name
 
 
+class ProductManager(models.Manager):
+
+
+    def get_queryset(self):
+        return super().get_queryset()\
+            .filter(is_available=True)
+
+
+
 class Product(models.Model):
     product_name = models.CharField(max_length=200)
     price = models.FloatField()
     category = models.ForeignKey(Category,on_delete=models.CASCADE)
     created_date = models.DateTimeField(auto_now_add=True)
     updated_date = models.DateTimeField(auto_now=True)
+    is_available = models.BooleanField()
+
+    availability = ProductManager()
     
 
     def __str__(self):

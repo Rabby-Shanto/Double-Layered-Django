@@ -13,11 +13,11 @@ DATABASES = {
     }
 }
 
-INSTALLED_APPS += ['icecreamratings.products','icecreamratings.profiles','icecreamratings.ratings']
+INSTALLED_APPS += ['icecreamratings.products','icecreamratings.profiles','icecreamratings.ratings','icecreamratings.blog']
 
 ROOT_URLCONF = 'config.urls'
 
-ALLOWED_HOSTS = ['localhost']
+ALLOWED_HOSTS = ['*']
 DEBUG = True
 
 SECRET_KEY = 'django-insecure-m6!x+b@qocdigra8&sbvjc@uuxn=%%2$kkdf(r+i!a0kla8gu6'
