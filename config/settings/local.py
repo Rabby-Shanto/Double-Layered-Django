@@ -21,3 +21,11 @@ ALLOWED_HOSTS = ['*']
 DEBUG = True
 
 SECRET_KEY = 'django-insecure-m6!x+b@qocdigra8&sbvjc@uuxn=%%2$kkdf(r+i!a0kla8gu6'
+
+
+# Email server configuration
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'django.smtp.host@gmail.com'
+EMAIL_HOST_PASSWORD = 'zlpxskjsqckjcloh'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
