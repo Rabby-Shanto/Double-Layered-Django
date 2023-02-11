@@ -13,7 +13,7 @@ DATABASES = {
     }
 }
 
-INSTALLED_APPS += ['icecreamratings.products','icecreamratings.profiles','icecreamratings.ratings','icecreamratings.blog']
+INSTALLED_APPS += ['icecreamratings.products','icecreamratings.profiles','icecreamratings.ratings','icecreamratings.blog','taggit']
 
 ROOT_URLCONF = 'config.urls'
 
