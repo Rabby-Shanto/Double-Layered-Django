@@ -1,7 +1,8 @@
 from django.shortcuts import render,get_object_or_404
 
 
-from .models import Post,Comment
+from .models import Post, Comment
+from taggit.models import Tag
 from django.http import Http404
 from django.core.paginator import Paginator,EmptyPage,PageNotAnInteger
 
@@ -12,9 +13,13 @@ from django.views.decorators.http import require_POST
 # Create your views here.
 
 
-def post_list(request):
-
+def post_list(request, tag_slug=None):
     posts = Post.published.all()
+    get_tag = None
+
+    if tag_slug:
+        get_tag = get_object_or_404(Tag, slug=tag_slug)
+        posts = Post.objects.filter(tag__in=[get_tag])
     paginator = Paginator(posts, 3)
     page_number = request.GET.get('page', 1)
 
@@ -47,16 +52,17 @@ def detail_post(request,year,month,day,post):
 
     context = {
 
-        'post' : post,
-        'comments' : comments,
-        'form' : form
+        'post': post,
+        'comments': comments,
+        'form': form,
+        'tag': tag
 
     }
 
     return render(request,'post/detail.html',context)
 
 
-def send_email(request,post_id):
+def send_email(request, post_id):
 
     post = get_object_or_404(Post, id=post_id, status=Post.Status.PUBLISHED)
     sent = False
